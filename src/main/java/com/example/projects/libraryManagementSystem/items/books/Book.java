@@ -3,9 +3,9 @@ package com.example.projects.libraryManagementSystem.items.books;
 import com.example.projects.libraryManagementSystem.items.Item;
 
 public class Book extends Item {
-    private String isbn;
-    private String title;
-    private String author;
+    private final String isbn;
+    private final String title;
+    private final String author;
     private boolean isAvailable;
 
     public Book(int itemId, String isbn, String title, String author, boolean isAvailable) {
@@ -28,24 +28,12 @@ public class Book extends Item {
         return isbn;
     }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getAuthor() {
         return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public boolean getIsAvailable() {

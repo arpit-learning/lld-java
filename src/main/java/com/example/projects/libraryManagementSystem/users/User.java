@@ -4,6 +4,7 @@ public abstract class User {
     private int userId;
     private String name;
     private String contactInfo;
+    private int currentBorrowed = 0;
 
     // parameterized constructor
     public User(int userId, String name, String contactInfo) {
@@ -39,5 +40,13 @@ public abstract class User {
 
     public void setContactInfo(String contactInfo) {
         this.contactInfo = contactInfo;
+    }
+
+    public int getCurrentBorrowed() {
+        return currentBorrowed;
+    }
+
+    public void setCurrentBorrowed(int currentBorrowed) {
+        this.currentBorrowed = currentBorrowed;
     }
 }
