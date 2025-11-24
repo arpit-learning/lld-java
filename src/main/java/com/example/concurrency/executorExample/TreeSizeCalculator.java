@@ -44,6 +44,6 @@ public class TreeSizeCalculator implements Callable<Integer> {
             rgH = rgHF.get();
         }
 
-        return Math.max(lfH, rgH) + 1;
+        return lfH + rgH + 1;
     }
 }
