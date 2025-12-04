@@ -20,7 +20,6 @@ public class Consumer implements Runnable {
 
     @Override
     public void run() {
-        int i = 0;
         while (true) {
             try {
                 semaConsumer.acquire();
