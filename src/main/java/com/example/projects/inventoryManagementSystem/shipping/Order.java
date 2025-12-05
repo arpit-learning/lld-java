@@ -14,9 +14,14 @@ public class Order implements Comparable<Order> {
     }
 
     public int compareTo(Order other) {
-        if (this.isExpress && !other.isExpress) return -1;
-        if (!this.isExpress && !other.isExpress) return 1;
-        return this.orderId.compareTo(other.orderId);
+        if (this.isExpress == other.isExpress) {
+            return this.orderId.compareTo(other.orderId);
+        } else if (this.isExpress) {
+            return -1;
+        } else {
+            return 1;
+        }
+
     }
 
     public String getOrderId() {
