@@ -15,7 +15,7 @@ public class HydrogenReleaser implements Runnable {
         try {
             semaH.acquire();
             System.out.print("H");
-            if (semaO.availablePermits() == 0) semaO.release();
+            if (semaH.availablePermits() == 0) semaO.release();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

@@ -2,68 +2,87 @@ package com.example.concurrency.problems.ZeroOddEven;
 
 import java.util.concurrent.Semaphore;
 
+class IntConsumer {
+    public void accept(int n) {
+        System.out.print(n);
+    }
+}
+
+
 public class ZeroOddEven {
     private final Semaphore semaZ, semaE, semaO;
     private final int n;
-    private int no = 1;
+    private final IntConsumer printNumber;
 
-    public ZeroOddEven(int n) {
+    public ZeroOddEven(int n, IntConsumer printNumber) {
         this.n = n;
         semaZ = new Semaphore(1);
         semaE = new Semaphore(0);
         semaO = new Semaphore(0);
+        this.printNumber = printNumber;
     }
 
     public static void main(String[] args) throws InterruptedException {
-        ZeroOddEven zeroOddEven = new ZeroOddEven(3);
         IntConsumer printNumber = new IntConsumer();
+        ZeroOddEven zeroOddEven = new ZeroOddEven(3, printNumber);
 
-        for (int i = 0; i < 10; i++) {
-            PrintZero printZero = new PrintZero(zeroOddEven, printNumber);
-            Thread printZeroThread = new Thread(printZero);
-            printZeroThread.start();
-        }
+        Thread printZeroThread = new Thread(() -> {
+            try {
+                zeroOddEven.zero();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        printZeroThread.start();
 
-        for (int i = 0; i < 10; i++) {
-            PrintEven printEven = new PrintEven(zeroOddEven, printNumber);
-            Thread printEvenThread = new Thread(printEven);
-            printEvenThread.start();
-        }
+        Thread printEvenThread = new Thread(() -> {
+            try {
+                zeroOddEven.even();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        printEvenThread.start();
 
-        for (int i = 0; i < 10; i++) {
-            PrintOdd printOdd = new PrintOdd(zeroOddEven, printNumber);
-            Thread printOddThread = new Thread(printOdd);
-            printOddThread.start();
-        }
+        Thread printOddThread = new Thread(() -> {
+            try {
+                zeroOddEven.odd();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        printOddThread.start();
+
+        printZeroThread.join();
+        printOddThread.join();
+        printEvenThread.join();
     }
 
-    public void zero(IntConsumer printNumber) throws InterruptedException {
-        semaZ.acquire();
-        if (no <= n) {
+    public void zero() throws InterruptedException {
+        for (int i = 1; i <= this.n; i++) {
+            semaZ.acquire();
             printNumber.accept(0);
-        }
-        if (no % 2 == 1) {
-            semaO.release();
-        } else {
-            semaE.release();
+            if (i % 2 == 1) {
+                semaO.release();
+            } else {
+                semaE.release();
+            }
         }
     }
 
-    public void even(IntConsumer printNumber) throws InterruptedException {
-        semaE.acquire();
-        if (no <= n) {
-            printNumber.accept(no);
-            no += 1;
+    public void odd() throws InterruptedException {
+        for (int i = 1; i <= this.n; i += 2) {
+            semaO.acquire();
+            printNumber.accept(i);
+            semaZ.release();
         }
-        semaZ.release();
     }
 
-    public void odd(IntConsumer printNumber) throws InterruptedException {
-        semaO.acquire();
-        if (no <= n) {
-            printNumber.accept(no);
-            no += 1;
+    public void even() throws InterruptedException {
+        for (int i = 2; i <= this.n; i += 2) {
+            semaE.acquire();
+            printNumber.accept(i);
+            semaZ.release();
         }
-        semaZ.release();
     }
 }
