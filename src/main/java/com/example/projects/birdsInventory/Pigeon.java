@@ -1,6 +1,6 @@
 package com.example.projects.birdsInventory;
 
-public class Piegon implements IBird, IFly {
+public class Pigeon implements IBird, IFly {
     @Override
     public void walk() {
 
