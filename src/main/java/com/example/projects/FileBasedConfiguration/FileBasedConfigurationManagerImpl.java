@@ -64,13 +64,11 @@ public class FileBasedConfigurationManagerImpl extends FileBasedConfigurationMan
 
     @Override
     public void removeConfiguration(String key) {
-        // TODO Auto-generated method stub
         this.properties.remove(key);
     }
 
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
         this.properties.clear();
     }
 
