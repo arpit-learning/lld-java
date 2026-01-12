@@ -11,3 +11,4 @@ to the creation of objects.
     - Abstract Factory
     - Practical Factory
 4. Prototypes and Registry
+5. Decorator
