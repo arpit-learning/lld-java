@@ -10,5 +10,7 @@ to the creation of objects.
     - Simple Factory
     - Abstract Factory
     - Practical Factory
-4. Prototypes and Registry
-5. Decorator
+4. Prototype
+5. Registry
+6. Decorator
+7. FlyWeight
