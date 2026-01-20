@@ -1,5 +1,8 @@
 package com.example.designPatterns.creationalDesignPatterns.flyweight;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GraphicRegistry implements FlyweightRegistry {
     Map<GraphicType, GraphicIntrinsicState> registry;
 
