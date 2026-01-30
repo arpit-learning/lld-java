@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        GameController gc = new GameController();
         int id = 1;
         List<Player> players = new ArrayList<>();
 
@@ -19,6 +18,7 @@ public class Main {
 
         System.out.println("Please enter the dimension for the board:");
         int dimension = sc.nextInt();
+        GameController gc = new GameController(dimension);
 
         System.out.println("Do you want a bot in the game? (y/n)");
         String botAns = sc.next();
@@ -50,6 +50,7 @@ public class Main {
             if (winner != null) {
                 System.out.println("Winner is: " + winner.getName() + " with symbol: " + winner.getSymbol());
                 gc.updateGameStatus(game, GameStatus.WIN);
+                gc.displayBoard(game);
                 break;
             }
         }
