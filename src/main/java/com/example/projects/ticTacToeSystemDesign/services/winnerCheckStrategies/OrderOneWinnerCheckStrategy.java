@@ -11,14 +11,19 @@ import java.util.List;
 
 public class OrderOneWinnerCheckStrategy implements IWinnerCheckStrategy {
     private int dimension;
-    private List<HashMap<Character, Integer>> rowHMList = new ArrayList<>(); // index i of the list would represent row i hashmap
-    private List<HashMap<Character, Integer>> colHMList = new ArrayList<>(); // index i of the list would represent col i hashmap
-    private HashMap<Character, Integer> leftDiagHM = new HashMap<>();
-    private HashMap<Character, Integer> rightDiagHM = new HashMap<>();
-    private HashMap<Character, Integer> cornersHM = new HashMap<>();
+    private List<HashMap<Character, Integer>> rowHMList; // index i of the list would represent row i hashmap
+    private List<HashMap<Character, Integer>> colHMList; // index i of the list would represent col i hashmap
+    private HashMap<Character, Integer> leftDiagHM;
+    private HashMap<Character, Integer> rightDiagHM;
+    private HashMap<Character, Integer> cornersHM;
     private int validHMs;
 
     public OrderOneWinnerCheckStrategy(int dimension) {
+        rowHMList = new ArrayList<>();
+        colHMList = new ArrayList<>();
+        leftDiagHM = new HashMap<>();
+        rightDiagHM = new HashMap<>();
+        cornersHM = new HashMap<>();
         this.dimension = dimension;
         this.validHMs = 2 * dimension + 3;
         for (int i = 0; i < dimension; i++) {
