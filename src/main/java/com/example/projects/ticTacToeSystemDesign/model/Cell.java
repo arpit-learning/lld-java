@@ -45,4 +45,10 @@ public class Cell {
         this.player = player;
     }
 
+    public Cell copy() {
+        Cell copiedCell = new Cell(this.row, this.column);
+        copiedCell.cellState = CellState.EMPTY;
+        copiedCell.player = null;
+        return copiedCell;
+    }
 }

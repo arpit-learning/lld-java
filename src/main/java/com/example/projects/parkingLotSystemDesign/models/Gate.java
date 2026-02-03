@@ -8,6 +8,9 @@ public class Gate extends BaseModel {
     private GateStatus status;
     private Operator operator;
 
+    public Gate() {
+    }
+
     public Gate(GateType type, GateStatus status, Operator operator) {
         this.type = type;
         this.status = status;

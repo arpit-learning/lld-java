@@ -34,4 +34,19 @@ public class Board {
     public void setCells(List<List<Cell>> cells) {
         this.cells = cells;
     }
+
+    /**
+     * Creates a deep copy of this board
+     */
+    public Board copy() {
+        Board copiedBoard = new Board(this.dimension);
+        for (int i = 0; i < dimension; i++) {
+            for (int j = 0; j < dimension; j++) {
+                Cell originalCell = this.cells.get(i).get(j);
+                Cell copiedCell = originalCell.copy();
+                copiedBoard.cells.get(i).set(j, copiedCell);
+            }
+        }
+        return copiedBoard;
+    }
 }

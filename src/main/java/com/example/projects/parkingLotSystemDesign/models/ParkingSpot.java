@@ -5,13 +5,16 @@ import com.example.projects.parkingLotSystemDesign.models.constants.ParkingSpotT
 import com.example.projects.parkingLotSystemDesign.models.constants.VehicleType;
 
 public class ParkingSpot extends BaseModel {
-    private int number;
+    private String number;
     private VehicleType vehicleType;
     private ParkingSpotStatus status;
     private ParkingSpotType type;
     private Vehicle vehicle;
 
-    public ParkingSpot(int number, VehicleType vehicleType, ParkingSpotStatus status, ParkingSpotType type, Vehicle vehicle) {
+    public ParkingSpot() {
+    }
+
+    public ParkingSpot(String number, VehicleType vehicleType, ParkingSpotStatus status, ParkingSpotType type, Vehicle vehicle) {
         this.number = number;
         this.vehicleType = vehicleType;
         this.status = status;
@@ -19,11 +22,11 @@ public class ParkingSpot extends BaseModel {
         this.vehicle = vehicle;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 

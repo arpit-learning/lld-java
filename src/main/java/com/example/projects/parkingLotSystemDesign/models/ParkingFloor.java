@@ -11,13 +11,16 @@ public class ParkingFloor extends BaseModel {
     private List<Gate> gates;
     private ParkingFloorStatus status;
 
+    public ParkingFloor() {
+    }
+
     public ParkingFloor(int floorNumber, List<ParkingSpot> parkingSpots, List<Gate> gates, ParkingFloorStatus status) {
         this.floorNumber = floorNumber;
         this.parkingSpots = parkingSpots;
         this.gates = gates;
         this.status = status;
     }
-    
+
     public int getFloorNumber() {
         return floorNumber;
     }

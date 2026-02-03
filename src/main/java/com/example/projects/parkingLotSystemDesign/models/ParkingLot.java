@@ -3,31 +3,36 @@ package com.example.projects.parkingLotSystemDesign.models;
 import com.example.projects.parkingLotSystemDesign.models.constants.ParkingLotStatus;
 import com.example.projects.parkingLotSystemDesign.models.constants.VehicleType;
 import com.example.projects.parkingLotSystemDesign.services.billCalculationStrategy.BillCalculationStrategy;
-import com.example.projects.parkingLotSystemDesign.services.slotAllocationStrategy.SlotAllocationStrategy;
+import com.example.projects.parkingLotSystemDesign.services.spotAllocationStrategy.SpotSearchingStrategy;
 
 import java.util.List;
 
-public class ParkingLot {
+public class ParkingLot extends BaseModel {
     private String name;
     private String address;
     private List<ParkingFloor> floors;
     private ParkingLotStatus status;
     private List<VehicleType> vehicleTypesSupported;
     private int capacity;
+    private int occupancy;
     private List<Operator> operators;
     private BillCalculationStrategy billCalculationStrategy;
-    private SlotAllocationStrategy slotAllocationStrategy;
+    private SpotSearchingStrategy spotSearchingStrategy;
 
-    public ParkingLot(String name, String address, List<ParkingFloor> floors, ParkingLotStatus status, List<VehicleType> vehicleTypesSupported, int capacity, List<Operator> operators, BillCalculationStrategy billCalculationStrategy, SlotAllocationStrategy slotAllocationStrategy) {
+    public ParkingLot() {
+    }
+
+    public ParkingLot(String name, String address, List<ParkingFloor> floors, ParkingLotStatus status, List<VehicleType> vehicleTypesSupported, int capacity, List<Operator> operators, BillCalculationStrategy billCalculationStrategy, SpotSearchingStrategy spotSearchingStrategy) {
         this.name = name;
         this.address = address;
         this.floors = floors;
         this.status = status;
         this.vehicleTypesSupported = vehicleTypesSupported;
         this.capacity = capacity;
+        this.occupancy = 0;
         this.operators = operators;
         this.billCalculationStrategy = billCalculationStrategy;
-        this.slotAllocationStrategy = slotAllocationStrategy;
+        this.spotSearchingStrategy = spotSearchingStrategy;
     }
 
     public String getName() {
@@ -94,11 +99,19 @@ public class ParkingLot {
         this.billCalculationStrategy = billCalculationStrategy;
     }
 
-    public SlotAllocationStrategy getSlotAllocationStrategy() {
-        return slotAllocationStrategy;
+    public SpotSearchingStrategy getSlotSearchingStrategy() {
+        return spotSearchingStrategy;
     }
 
-    public void setSlotAllocationStrategy(SlotAllocationStrategy slotAllocationStrategy) {
-        this.slotAllocationStrategy = slotAllocationStrategy;
+    public void setSlotSearchingStrategy(SpotSearchingStrategy slotSearchingStrategy) {
+        this.spotSearchingStrategy = slotSearchingStrategy;
+    }
+
+    public int getOccupancy() {
+        return occupancy;
+    }
+
+    public void setOccupancy(int occupancy) {
+        this.occupancy = occupancy;
     }
 }
