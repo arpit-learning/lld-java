@@ -1,0 +1,40 @@
+package com.example.projects.udemyProjectSystemAssignment.models;
+
+public class File extends BaseModel {
+    private String name;
+    private String url;
+    private String fileType;
+
+    public File() {
+    }
+
+    public File(String name, String url, String fileType) {
+        this.name = name;
+        this.url = url;
+        this.fileType = fileType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+}
