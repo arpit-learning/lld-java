@@ -1,8 +1,8 @@
 package com.example.projects.bookMyShowClassDiagramAssignment.adapters.pricingadapters;
 
+import com.example.projects.bookMyShowClassDiagramAssignment.external.RazorpayApi;
 import com.example.projects.bookMyShowClassDiagramAssignment.models.Booking;
 import com.example.projects.bookMyShowClassDiagramAssignment.models.Payment;
-import com.example.projects.bookMyShowClassDiagramAssignment.models.RazorpayApi;
 import com.example.projects.bookMyShowClassDiagramAssignment.models.contants.PaymentMode;
 import com.example.projects.bookMyShowClassDiagramAssignment.models.contants.PaymentStatus;
 
