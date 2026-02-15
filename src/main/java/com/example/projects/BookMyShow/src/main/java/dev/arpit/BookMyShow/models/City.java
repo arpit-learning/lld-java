@@ -1,10 +1,7 @@
 package dev.arpit.BookMyShow.models;
 
 import dev.arpit.BookMyShow.models.constants.CityStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -12,6 +9,7 @@ import java.util.List;
 public class City extends BaseModel {
     private String name;
     @OneToMany
+    @JoinColumn(name = "city_id")
     private List<Theatre> theatres;
     @Enumerated(EnumType.ORDINAL)
     private CityStatus cityStatus;

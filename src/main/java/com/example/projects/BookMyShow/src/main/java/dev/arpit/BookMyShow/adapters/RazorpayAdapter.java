@@ -1,13 +1,13 @@
-package dev.arpit.BookMyShow.pricingadapters;
+package dev.arpit.BookMyShow.adapters;
 
 import dev.arpit.BookMyShow.external.RazorpayApi;
-import dev.arpit.BookMyShow.models.Payment;
-import dev.arpit.BookMyShow.models.Ticket;
-import dev.arpit.BookMyShow.models.Transaction;
+import dev.arpit.BookMyShow.models.*;
 import dev.arpit.BookMyShow.models.constants.TransactionPaymentStatus;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class RazorpayAdapter implements PaymentAdapter {
     private RazorpayApi razorpayApi;
 
@@ -20,8 +20,8 @@ public class RazorpayAdapter implements PaymentAdapter {
     }
 
     @Override
-    public Payment makePayment(Ticket ticket) {
-        String statusStr = razorpayApi.processPayment(1234);
+    public Payment makePayment(double amount) {
+        String statusStr = razorpayApi.processPayment(amount);
 
         Payment payment = new Payment();
         payment.setTransactions(List.of(new Transaction()));

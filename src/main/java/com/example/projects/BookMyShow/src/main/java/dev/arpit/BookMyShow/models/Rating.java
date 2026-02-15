@@ -1,6 +1,7 @@
 package dev.arpit.BookMyShow.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 public class Rating extends BaseModel {
     private double stars;
     @OneToMany
+    @JoinColumn(name = "rating_id")
     private List<Comment> comments;
 
     public double getStars() {

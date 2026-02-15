@@ -1,16 +1,14 @@
 package dev.arpit.BookMyShow.models;
 
 import dev.arpit.BookMyShow.models.constants.TransactionPaymentStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 public class Payment extends BaseModel {
     @OneToMany
+    @JoinColumn(name = "payment_id")
     private List<Transaction> transactions;
     @Enumerated(EnumType.ORDINAL)
     private TransactionPaymentStatus paymentStatus;

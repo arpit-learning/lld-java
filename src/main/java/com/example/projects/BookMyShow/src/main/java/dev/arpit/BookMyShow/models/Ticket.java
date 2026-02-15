@@ -14,6 +14,7 @@ public class Ticket extends BaseModel {
     @ManyToOne
     private Show show;
     @OneToMany
+    @JoinColumn(name = "ticket_id")
     private List<ShowSeat> showSeats;
     @Enumerated(EnumType.ORDINAL)
     private TicketStatus ticketStatus;
@@ -22,39 +23,44 @@ public class Ticket extends BaseModel {
         return user;
     }
 
-    public void setUser(User user) {
+    public Ticket setUser(User user) {
         this.user = user;
+        return this;
     }
 
     public Show getShow() {
         return show;
     }
 
-    public void setShow(Show show) {
+    public Ticket setShow(Show show) {
         this.show = show;
+        return this;
     }
 
     public List<ShowSeat> getShowSeats() {
         return showSeats;
     }
 
-    public void setShowSeats(List<ShowSeat> showSeats) {
+    public Ticket setShowSeats(List<ShowSeat> showSeats) {
         this.showSeats = showSeats;
+        return this;
     }
 
     public Payment getPayment() {
         return payment;
     }
 
-    public void setPayment(Payment payment) {
+    public Ticket setPayment(Payment payment) {
         this.payment = payment;
+        return this;
     }
 
     public TicketStatus getTicketStatus() {
         return ticketStatus;
     }
 
-    public void setTicketStatus(TicketStatus ticketStatus) {
+    public Ticket setTicketStatus(TicketStatus ticketStatus) {
         this.ticketStatus = ticketStatus;
+        return this;
     }
 }

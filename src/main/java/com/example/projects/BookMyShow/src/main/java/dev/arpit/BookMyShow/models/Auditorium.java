@@ -10,8 +10,10 @@ import java.util.List;
 public class Auditorium extends BaseModel {
     private String name;
     @OneToMany
+    @JoinColumn(name = "auditorium_id")
     private List<Seat> seats;
     @OneToMany
+    @JoinColumn(name = "auditorium_id")
     private List<Show> shows;
     @Enumerated(EnumType.ORDINAL)
     private AuditoriumStatus auditoriumStatus;

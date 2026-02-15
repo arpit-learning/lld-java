@@ -23,47 +23,53 @@ public class Seat extends BaseModel {
         return seatNumber;
     }
 
-    public void setSeatNumber(String seatNumber) {
+    public Seat setSeatNumber(String seatNumber) {
         this.seatNumber = seatNumber;
+        return this;
     }
 
     public SeatStatus getSeatStatus() {
         return seatStatus;
     }
 
-    public void setSeatStatus(SeatStatus seatStatus) {
+    public Seat setSeatStatus(SeatStatus seatStatus) {
         this.seatStatus = seatStatus;
+        return this;
     }
 
     public SeatReservationType getSeatReservationType() {
         return seatReservationType;
     }
 
-    public void setSeatReservationType(SeatReservationType seatReservationType) {
+    public Seat setSeatReservationType(SeatReservationType seatReservationType) {
         this.seatReservationType = seatReservationType;
+        return this;
     }
 
     public int getRow() {
         return seatRow;
     }
 
-    public void setRow(int row) {
+    public Seat setRow(int row) {
         this.seatRow = row;
+        return this;
     }
 
     public int getColumn() {
         return seatColumn;
     }
 
-    public void setColumn(int column) {
+    public Seat setColumn(int column) {
         this.seatColumn = column;
+        return this;
     }
 
     public SeatType getSeatType() {
         return seatType;
     }
 
-    public void setSeatType(SeatType seatType) {
+    public Seat setSeatType(SeatType seatType) {
         this.seatType = seatType;
+        return this;
     }
 }
