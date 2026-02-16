@@ -12,6 +12,8 @@ import dev.arpit.BookMyShow.models.constants.TicketStatus;
 import dev.arpit.BookMyShow.repositories.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,6 +29,7 @@ public class TicketServiceImpl implements TicketService {
     private TicketRepository ticketRepository;
 
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor = Exception.class)
     public Ticket createTicket(List<Integer> showSeatIds, Integer userId) throws UserNotFoundException, ShowSeatsNotFoundException, ShowSeatNotAvailableException {
         User user = userService.getUserById(userId);
         List<ShowSeat> showSeats = showSeatService.getShowSeatsByIds(showSeatIds);

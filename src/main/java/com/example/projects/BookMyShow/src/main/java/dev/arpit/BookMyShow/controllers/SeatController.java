@@ -20,7 +20,7 @@ public class SeatController {
     private SeatService seatService;
 
     @PostMapping("/seat")
-    public ResponseEntity<ResponseDTO<CreateSeatResponseDTO>> createSeat(@RequestBody CreateSeatRequestDTO requestDTO) throws InvalidCreateSeatRequestDTOException {
+    public ResponseEntity<ResponseDTO<CreateSeatResponseDTO>> createSeat(@RequestBody CreateSeatRequestDTO requestDTO) {
         ResponseDTO<CreateSeatResponseDTO> responseDTO = new ResponseDTO<>();
 
         try {
@@ -52,10 +52,10 @@ public class SeatController {
         if(requestDTO.getSeatNumber() == null) {
             throw new InvalidCreateSeatRequestDTOException("Seat number can not be null");
         }
-        if(requestDTO.getSeatRow() == 0) {
+        if(requestDTO.getSeatRow() == null) {
             throw new InvalidCreateSeatRequestDTOException("Seat row can not be 0");
         }
-        if(requestDTO.getSeatColumn() == 0) {
+        if(requestDTO.getSeatColumn() == null) {
             throw new InvalidCreateSeatRequestDTOException("Seat column can not be 0");
         }
         if(requestDTO.getSeatType() == null) {

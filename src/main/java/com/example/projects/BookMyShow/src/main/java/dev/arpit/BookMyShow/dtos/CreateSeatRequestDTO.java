@@ -2,15 +2,15 @@ package dev.arpit.BookMyShow.dtos;
 
 public class CreateSeatRequestDTO {
     private String seatNumber;
-    private int seatRow;
-    private int seatColumn;
+    private Integer seatRow;
+    private Integer seatColumn;
     private String seatType;
     private String seatReservationType;
 
     public CreateSeatRequestDTO() {
     }
 
-    public CreateSeatRequestDTO(String seatNumber, int seatRow, int seatColumn, String seatType, String seatReservationType) {
+    public CreateSeatRequestDTO(String seatNumber, Integer seatRow, Integer seatColumn, String seatType, String seatReservationType) {
         this.seatNumber = seatNumber;
         this.seatRow = seatRow;
         this.seatColumn = seatColumn;
@@ -27,20 +27,20 @@ public class CreateSeatRequestDTO {
         return this;
     }
 
-    public int getSeatRow() {
+    public Integer getSeatRow() {
         return seatRow;
     }
 
-    public CreateSeatRequestDTO setSeatRow(int seatRow) {
+    public CreateSeatRequestDTO setSeatRow(Integer seatRow) {
         this.seatRow = seatRow;
         return this;
     }
 
-    public int getSeatColumn() {
+    public Integer getSeatColumn() {
         return seatColumn;
     }
 
-    public CreateSeatRequestDTO setSeatColumn(int seatColumn) {
+    public CreateSeatRequestDTO setSeatColumn(Integer seatColumn) {
         this.seatColumn = seatColumn;
         return this;
     }

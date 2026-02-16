@@ -5,6 +5,7 @@ import dev.arpit.BookMyShow.dtos.CreateSeatResponseDTO;
 import dev.arpit.BookMyShow.exceptions.InvalidCreateSeatRequestDTOException;
 import dev.arpit.BookMyShow.models.Seat;
 import dev.arpit.BookMyShow.models.constants.SeatReservationType;
+import dev.arpit.BookMyShow.models.constants.SeatStatus;
 import dev.arpit.BookMyShow.models.constants.SeatType;
 
 import java.util.Arrays;
@@ -19,11 +20,14 @@ public class SeatDTOMapper {
             throw new InvalidCreateSeatRequestDTOException("Invalid seat type");
         }
         seat.setSeatType(SeatType.valueOf(requestDTO.getSeatType()));
-        if(Arrays.stream(SeatReservationType.values()).noneMatch(i -> i.toString().equals(requestDTO.getSeatReservationType()))) {
-            throw new InvalidCreateSeatRequestDTOException("Invalid seat reservation type");
+        String reservationType = requestDTO.getSeatReservationType();
+        if (!(reservationType == null || reservationType.trim().isEmpty())) {
+            if (Arrays.stream(SeatReservationType.values()).noneMatch(i -> i.toString().equals(reservationType))) {
+                throw new InvalidCreateSeatRequestDTOException("Invalid seat reservation type");
+            }
+            seat.setSeatReservationType(SeatReservationType.valueOf(reservationType));
         }
-        seat.setSeatReservationType(SeatReservationType.valueOf(requestDTO.getSeatReservationType()));
-
+        seat.setSeatStatus(SeatStatus.AVAILABLE);
         return seat;
     }
 
@@ -34,8 +38,10 @@ public class SeatDTOMapper {
                 .setSeatRow(seat.getRow())
                 .setSeatColumn(seat.getColumn())
                 .setSeatType(seat.getSeatType().toString())
-                .setSeatStatus(seat.getSeatStatus().toString())
-                .setSeatReservationType(seat.getSeatReservationType().toString());
+                .setSeatStatus(seat.getSeatStatus().toString());
+        if(seat.getSeatReservationType() != null) {
+            responseDTO.setSeatReservationType(seat.getSeatReservationType().toString());
+        }
         return responseDTO;
     }
 }
