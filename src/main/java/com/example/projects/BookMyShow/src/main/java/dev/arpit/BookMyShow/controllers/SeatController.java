@@ -1,9 +1,7 @@
 package dev.arpit.BookMyShow.controllers;
 
-import dev.arpit.BookMyShow.dtos.CreateSeatRequestDTO;
-import dev.arpit.BookMyShow.dtos.CreateSeatResponseDTO;
-import dev.arpit.BookMyShow.dtos.MetaDataDTO;
-import dev.arpit.BookMyShow.dtos.ResponseDTO;
+import dev.arpit.BookMyShow.dtos.*;
+import dev.arpit.BookMyShow.exceptions.BaseException;
 import dev.arpit.BookMyShow.exceptions.InvalidCreateSeatRequestDTOException;
 import dev.arpit.BookMyShow.mappers.SeatDTOMapper;
 import dev.arpit.BookMyShow.models.Seat;
@@ -32,13 +30,15 @@ public class SeatController {
             ).setMeta(
                     new MetaDataDTO(
                             "success",
-                            "SUCCESS"
+                            ResponseCode.SC_200,
+                            "Seat created successfully"
                     )
             );
-        } catch(Exception e) {
+        } catch(BaseException e) {
             responseDTO.setMeta(new MetaDataDTO(
                     e.getMessage(),
-                    "FAILURE"
+                    e.getCode(),
+                    e.getDisplayMessage()
             ));
         }
 
@@ -47,19 +47,19 @@ public class SeatController {
 
     private void doValidations(CreateSeatRequestDTO requestDTO) throws InvalidCreateSeatRequestDTOException {
         if(requestDTO == null) {
-            throw new InvalidCreateSeatRequestDTOException("Request body can not be null");
+            throw new InvalidCreateSeatRequestDTOException("Request body can not be null", ResponseCode.ER_400, "Invalid request body");
         }
         if(requestDTO.getSeatNumber() == null) {
-            throw new InvalidCreateSeatRequestDTOException("Seat number can not be null");
+            throw new InvalidCreateSeatRequestDTOException("Seat number can not be null", ResponseCode.ER_400, "Invalid seat number");
         }
         if(requestDTO.getSeatRow() == null) {
-            throw new InvalidCreateSeatRequestDTOException("Seat row can not be 0");
+            throw new InvalidCreateSeatRequestDTOException("Seat row can not be 0", ResponseCode.ER_400, "Invalid seat row");
         }
         if(requestDTO.getSeatColumn() == null) {
-            throw new InvalidCreateSeatRequestDTOException("Seat column can not be 0");
+            throw new InvalidCreateSeatRequestDTOException("Seat column can not be 0", ResponseCode.ER_400, "Invalid seat column");
         }
         if(requestDTO.getSeatType() == null) {
-            throw new InvalidCreateSeatRequestDTOException("Seat type can not be null");
+            throw new InvalidCreateSeatRequestDTOException("Seat type can not be null", ResponseCode.ER_400, "Invalid seat type");
         }
     }
 }

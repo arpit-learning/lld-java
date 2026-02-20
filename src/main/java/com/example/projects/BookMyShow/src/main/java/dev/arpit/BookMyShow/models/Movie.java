@@ -22,31 +22,35 @@ public class Movie extends BaseModel {
         return title;
     }
 
-    public void setTitle(String title) {
+    public Movie setTitle(String title) {
         this.title = title;
+        return this;
     }
 
     public List<Feature> getFeatures() {
         return features;
     }
 
-    public void setFeatures(List<Feature> features) {
+    public Movie setFeatures(List<Feature> features) {
         this.features = features;
+        return this;
     }
 
     public Rating getRating() {
         return rating;
     }
 
-    public void setRating(Rating rating) {
+    public Movie setRating(Rating rating) {
         this.rating = rating;
+        return this;
     }
 
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    public Movie setUrl(String url) {
         this.url = url;
+        return this;
     }
 }

@@ -1,5 +1,6 @@
 package dev.arpit.BookMyShow.services;
 
+import dev.arpit.BookMyShow.dtos.ResponseCode;
 import dev.arpit.BookMyShow.exceptions.ShowSeatNotAvailableException;
 import dev.arpit.BookMyShow.exceptions.ShowSeatsNotFoundException;
 import dev.arpit.BookMyShow.exceptions.UserNotFoundException;
@@ -35,12 +36,12 @@ public class TicketServiceImpl implements TicketService {
         List<ShowSeat> showSeats = showSeatService.getShowSeatsByIds(showSeatIds);
 
         if(showSeatIds.size() != showSeats.size()) {
-            throw new ShowSeatsNotFoundException("Some of the showSeats are not available");
+            throw new ShowSeatsNotFoundException("Some of the showSeats are not available", ResponseCode.ER_400, "Some of the showSeats are not available. Please try again later.");
         }
 
         for(ShowSeat showSeat : showSeats){
             if(!showSeat.getShowSeatStatus().equals(ShowSeatStatus.AVAILABLE)) {
-                throw new ShowSeatNotAvailableException("ShowSeat " + showSeat.getId() + " is not available");
+                throw new ShowSeatNotAvailableException("ShowSeat " + showSeat.getId() + " is not available", ResponseCode.ER_400, "ShowSeat is not available. Please try again later.");
             }
         }
 

@@ -1,5 +1,6 @@
 package dev.arpit.BookMyShow.services;
 
+import dev.arpit.BookMyShow.dtos.ResponseCode;
 import dev.arpit.BookMyShow.exceptions.UserNotFoundException;
 import dev.arpit.BookMyShow.models.User;
 import dev.arpit.BookMyShow.repositories.UserRepository;
@@ -19,6 +20,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(int id) throws UserNotFoundException {
-        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with " + id + " not found"));
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with " + id + " not found", ResponseCode.ER_400, "User not found"));
     }
 }

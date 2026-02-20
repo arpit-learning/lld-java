@@ -1,7 +1,9 @@
 package dev.arpit.BookMyShow.exceptions;
 
-public class ShowSeatsNotFoundException extends Exception {
-    public ShowSeatsNotFoundException(String message) {
-        super(message);
+import dev.arpit.BookMyShow.dtos.ResponseCode;
+
+public class ShowSeatsNotFoundException extends BaseException {
+    public ShowSeatsNotFoundException(String message, ResponseCode code, String displayMessage) {
+        super(message, code, displayMessage);
     }
 }

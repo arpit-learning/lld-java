@@ -2,6 +2,7 @@ package dev.arpit.BookMyShow.mappers;
 
 import dev.arpit.BookMyShow.dtos.CreateSeatRequestDTO;
 import dev.arpit.BookMyShow.dtos.CreateSeatResponseDTO;
+import dev.arpit.BookMyShow.dtos.ResponseCode;
 import dev.arpit.BookMyShow.exceptions.InvalidCreateSeatRequestDTOException;
 import dev.arpit.BookMyShow.models.Seat;
 import dev.arpit.BookMyShow.models.constants.SeatReservationType;
@@ -17,13 +18,13 @@ public class SeatDTOMapper {
                 .setRow(requestDTO.getSeatRow())
                 .setColumn(requestDTO.getSeatColumn());
         if(Arrays.stream(SeatType.values()).noneMatch(i -> i.toString().equals(requestDTO.getSeatType()))) {
-            throw new InvalidCreateSeatRequestDTOException("Invalid seat type");
+            throw new InvalidCreateSeatRequestDTOException("Invalid seat type", ResponseCode.ER_400, "Invalid seat type");
         }
         seat.setSeatType(SeatType.valueOf(requestDTO.getSeatType()));
         String reservationType = requestDTO.getSeatReservationType();
         if (!(reservationType == null || reservationType.trim().isEmpty())) {
             if (Arrays.stream(SeatReservationType.values()).noneMatch(i -> i.toString().equals(reservationType))) {
-                throw new InvalidCreateSeatRequestDTOException("Invalid seat reservation type");
+                throw new InvalidCreateSeatRequestDTOException("Invalid seat reservation type", ResponseCode.ER_400, "Invalid seat reservation type");
             }
             seat.setSeatReservationType(SeatReservationType.valueOf(reservationType));
         }

@@ -1,9 +1,7 @@
 package dev.arpit.BookMyShow.controllers;
 
-import dev.arpit.BookMyShow.dtos.CreateUserRequestDTO;
-import dev.arpit.BookMyShow.dtos.CreateUserResponseDTO;
-import dev.arpit.BookMyShow.dtos.MetaDataDTO;
-import dev.arpit.BookMyShow.dtos.ResponseDTO;
+import dev.arpit.BookMyShow.dtos.*;
+import dev.arpit.BookMyShow.exceptions.BaseException;
 import dev.arpit.BookMyShow.exceptions.InvalidCreateUserRequestDTOException;
 import dev.arpit.BookMyShow.mappers.UserDTOMapper;
 import dev.arpit.BookMyShow.models.User;
@@ -28,13 +26,15 @@ public class UserController {
             User user = userService.createUser(UserDTOMapper.getUser(requestDTO));
             responseDTO.setMeta(new MetaDataDTO(
                     "Success",
-                    "SUCCESS"
+                    ResponseCode.SC_200,
+                    "User created successfully"
             ))
                     .setData(UserDTOMapper.getCreateUserResponseDTO(user));
-        } catch(Exception e) {
+        } catch(BaseException e) {
             responseDTO.setMeta(new MetaDataDTO(
                     e.getMessage(),
-                    "FAILURE"
+                    e.getCode(),
+                    e.getMessage()
             ));
         }
 
@@ -43,16 +43,16 @@ public class UserController {
 
     private void doCreateUserValidations(CreateUserRequestDTO requestDTO) throws InvalidCreateUserRequestDTOException {
         if(requestDTO == null) {
-            throw new InvalidCreateUserRequestDTOException("Request payload can not be null");
+            throw new InvalidCreateUserRequestDTOException("Request payload can not be null", ResponseCode.ER_400, "Invalid request payload");
         }
         if(requestDTO.getName() == null || requestDTO.getName().isEmpty()) {
-            throw new InvalidCreateUserRequestDTOException("Name can not be empty");
+            throw new InvalidCreateUserRequestDTOException("Name can not be empty", ResponseCode.ER_400, "Invalid Name");
         }
         if(requestDTO.getEmail() == null || requestDTO.getEmail().isEmpty()) {
-            throw new InvalidCreateUserRequestDTOException("Email can not be empty");
+            throw new InvalidCreateUserRequestDTOException("Email can not be empty", ResponseCode.ER_400, "Invalid Email");
         }
         if(requestDTO.getPassword() == null || requestDTO.getPassword().isEmpty()) {
-            throw new InvalidCreateUserRequestDTOException("Password can not be empty");
+            throw new InvalidCreateUserRequestDTOException("Password can not be empty", ResponseCode.ER_400, "Invalid Password");
         }
     }
 }

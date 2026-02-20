@@ -1,9 +1,7 @@
 package dev.arpit.BookMyShow.controllers;
 
-import dev.arpit.BookMyShow.dtos.CreateTicketRequestDTO;
-import dev.arpit.BookMyShow.dtos.CreateTicketResponseDTO;
-import dev.arpit.BookMyShow.dtos.MetaDataDTO;
-import dev.arpit.BookMyShow.dtos.ResponseDTO;
+import dev.arpit.BookMyShow.dtos.*;
+import dev.arpit.BookMyShow.exceptions.BaseException;
 import dev.arpit.BookMyShow.exceptions.InvalidCreateTicketRequestDTOException;
 import dev.arpit.BookMyShow.mappers.TicketDTOMapper;
 import dev.arpit.BookMyShow.models.Ticket;
@@ -34,12 +32,14 @@ public class TicketController {
             responseDTO.setData(TicketDTOMapper.getTicketResponseDTO(ticket));
             responseDTO.setMeta(new MetaDataDTO(
                     "Success",
-                    "SUCCESS"
+                    ResponseCode.SC_200,
+                    "Ticket created successfully"
             ));
-        } catch(Exception e) {
+        } catch(BaseException e) {
             responseDTO.setMeta(new MetaDataDTO(
                     e.getMessage(),
-                    "FAILURE"
+                    e.getCode(),
+                    e.getDisplayMessage()
             ));
         }
 
@@ -48,17 +48,17 @@ public class TicketController {
 
     private void doValidations(CreateTicketRequestDTO requestDTO) throws InvalidCreateTicketRequestDTOException {
         if(requestDTO == null) {
-            throw new InvalidCreateTicketRequestDTOException("Request payload can not be null");
+            throw new InvalidCreateTicketRequestDTOException("Request payload can not be null", ResponseCode.ER_400, "Invalid request payload");
         }
         if(requestDTO.getShowSeatIds() == null || requestDTO.getShowSeatIds().isEmpty()) {
-            throw new InvalidCreateTicketRequestDTOException("ShowSeatIds can not be empty");
+            throw new InvalidCreateTicketRequestDTOException("ShowSeatIds can not be empty", ResponseCode.ER_400, "Invalid ShowSeatIds");
         }
         if(requestDTO.getUserId() == 0) {
-            throw new InvalidCreateTicketRequestDTOException("UserId can not be empty");
+            throw new InvalidCreateTicketRequestDTOException("UserId can not be empty", ResponseCode.ER_400, "Invalid UserId");
         }
         for(Integer seatId : requestDTO.getShowSeatIds()) {
             if(seatId == null) {
-                throw new InvalidCreateTicketRequestDTOException("ShowSeatIds can not contain null values");
+                throw new InvalidCreateTicketRequestDTOException("ShowSeatIds can not contain null values", ResponseCode.ER_400, "Invalid ShowSeatIds");
             }
         }
     }

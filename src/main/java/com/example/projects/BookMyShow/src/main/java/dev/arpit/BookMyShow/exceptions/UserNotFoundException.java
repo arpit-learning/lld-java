@@ -1,7 +1,9 @@
 package dev.arpit.BookMyShow.exceptions;
 
-public class UserNotFoundException extends Exception {
-    public UserNotFoundException(String message) {
-        super(message);
+import dev.arpit.BookMyShow.dtos.ResponseCode;
+
+public class UserNotFoundException extends BaseException {
+    public UserNotFoundException(String message, ResponseCode code, String displayMessage) {
+        super(message, code, displayMessage);
     }
 }

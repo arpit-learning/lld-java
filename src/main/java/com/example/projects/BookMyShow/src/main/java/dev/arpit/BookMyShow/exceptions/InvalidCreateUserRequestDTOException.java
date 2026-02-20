@@ -1,7 +1,9 @@
 package dev.arpit.BookMyShow.exceptions;
 
-public class InvalidCreateUserRequestDTOException extends Exception {
-    public InvalidCreateUserRequestDTOException(String message) {
-        super(message);
+import dev.arpit.BookMyShow.dtos.ResponseCode;
+
+public class InvalidCreateUserRequestDTOException extends BaseException {
+    public InvalidCreateUserRequestDTOException(String message, ResponseCode code, String displayMessage) {
+        super(message, code, displayMessage);
     }
 }

@@ -20,39 +20,44 @@ public class ShowSeat extends BaseModel {
         return seat;
     }
 
-    public void setSeat(Seat seat) {
+    public ShowSeat setSeat(Seat seat) {
         this.seat = seat;
+        return this;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public ShowSeat setPrice(double price) {
         this.price = price;
+        return this;
     }
 
     public String getBookedBy() {
         return bookedBy;
     }
 
-    public void setBookedBy(String bookedBy) {
+    public ShowSeat setBookedBy(String bookedBy) {
         this.bookedBy = bookedBy;
+        return this;
     }
 
     public Show getShow() {
         return show;
     }
 
-    public void setShow(Show show) {
+    public ShowSeat setShow(Show show) {
         this.show = show;
+        return this;
     }
 
     public ShowSeatStatus getShowSeatStatus() {
         return showSeatStatus;
     }
 
-    public void setShowSeatStatus(ShowSeatStatus showSeatStatus) {
+    public ShowSeat setShowSeatStatus(ShowSeatStatus showSeatStatus) {
         this.showSeatStatus = showSeatStatus;
+        return this;
     }
 }
