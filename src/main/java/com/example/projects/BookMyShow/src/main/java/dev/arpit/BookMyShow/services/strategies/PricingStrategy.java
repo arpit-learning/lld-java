@@ -1,4 +1,4 @@
-package dev.arpit.BookMyShow.strategies;
+package dev.arpit.BookMyShow.services.strategies;
 
 import dev.arpit.BookMyShow.models.ShowSeat;
 

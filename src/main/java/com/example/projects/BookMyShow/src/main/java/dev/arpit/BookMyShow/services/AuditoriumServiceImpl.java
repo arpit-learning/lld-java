@@ -16,4 +16,9 @@ public class AuditoriumServiceImpl implements AuditoriumService {
     public Auditorium findById(int id) throws InvalidAuditoriumIdException {
         return auditoriumRepository.findById(id).orElseThrow(() -> new InvalidAuditoriumIdException("Auditorium with id " + id + " not found.", ResponseCode.ER_400, "Unable to find auditorium. Please try again later."));
     }
+
+    @Override
+    public Auditorium save(Auditorium auditorium) {
+        return auditoriumRepository.save(auditorium);
+    }
 }

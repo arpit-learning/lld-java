@@ -18,23 +18,26 @@ public class Payment extends BaseModel {
         return transactions;
     }
 
-    public void setTransactions(List<Transaction> transactions) {
+    public Payment setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
+        return this;
     }
 
     public TransactionPaymentStatus getPaymentStatus() {
         return paymentStatus;
     }
 
-    public void setPaymentStatus(TransactionPaymentStatus paymentStatus) {
+    public Payment setPaymentStatus(TransactionPaymentStatus paymentStatus) {
         this.paymentStatus = paymentStatus;
+        return this;
     }
 
     public double getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(double totalAmount) {
+    public Payment setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
+        return this;
     }
 }

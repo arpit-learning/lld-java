@@ -23,7 +23,7 @@ public class UserController {
 
         try {
             doCreateUserValidations(requestDTO);
-            User user = userService.createUser(UserDTOMapper.getUser(requestDTO));
+            User user = userService.save(UserDTOMapper.getUser(requestDTO));
             responseDTO.setMeta(new MetaDataDTO(
                     "Success",
                     ResponseCode.SC_200,

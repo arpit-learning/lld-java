@@ -10,8 +10,10 @@ public class Ticket extends BaseModel {
     @OneToOne
     private Payment payment;
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
+    @JoinColumn(name = "show_id")
     private Show show;
     @OneToMany
     @JoinColumn(name = "ticket_id")

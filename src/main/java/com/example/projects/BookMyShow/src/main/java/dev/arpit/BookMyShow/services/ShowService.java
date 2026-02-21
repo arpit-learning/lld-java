@@ -12,4 +12,5 @@ import java.util.List;
 public interface ShowService {
     Show findById(int id) throws InvalidShowIdException;
     Show createShow(int movieId, int auditoriumId, String showStartTime, String showEndTime, List<String> featuresStr) throws InvalidMovieIdException, InvalidAuditoriumIdException;
+    Show save(Show show);
 }

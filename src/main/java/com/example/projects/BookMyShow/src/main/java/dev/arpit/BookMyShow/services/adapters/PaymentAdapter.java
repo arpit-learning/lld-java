@@ -1,4 +1,4 @@
-package dev.arpit.BookMyShow.adapters;
+package dev.arpit.BookMyShow.services.adapters;
 
 import dev.arpit.BookMyShow.models.Payment;
 import dev.arpit.BookMyShow.models.Ticket;

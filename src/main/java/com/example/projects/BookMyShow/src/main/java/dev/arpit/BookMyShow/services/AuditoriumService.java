@@ -7,4 +7,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface AuditoriumService {
    Auditorium findById(int id) throws InvalidAuditoriumIdException;
+   Auditorium save(Auditorium auditorium);
 }

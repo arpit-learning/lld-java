@@ -3,13 +3,16 @@ package dev.arpit.BookMyShow.models;
 import dev.arpit.BookMyShow.models.constants.ShowSeatStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
 public class ShowSeat extends BaseModel {
     @ManyToOne
+    @JoinColumn(name = "seat_id")
     private Seat seat;
     @ManyToOne
+    @JoinColumn(name = "show_id")
     private Show show;
     private double price;
     private String bookedBy;

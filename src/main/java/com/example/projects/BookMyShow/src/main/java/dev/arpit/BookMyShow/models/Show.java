@@ -10,9 +10,11 @@ import java.util.List;
 @Entity
 public class Show extends BaseModel {
     @ManyToOne
+    @JoinColumn(name = "movie_id")
     private Movie movie;
     private LocalDateTime showStartTime, showEndTime;
     @ManyToOne
+    @JoinColumn(name = "auditorium_id")
     private Auditorium auditorium;
     @OneToMany
     @JoinColumn(name = "show_id")

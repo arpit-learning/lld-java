@@ -8,42 +8,46 @@ import jakarta.persistence.Enumerated;
 
 @Entity
 public class Transaction extends BaseModel {
-    private int transactionAmount;
+    private double transactionAmount;
     @Enumerated(EnumType.ORDINAL)
-    private TransactionPaymentStatus transactionPaymentStatus;
+    private TransactionPaymentStatus transactionStatus;
     private String referenceNumber;
     @Enumerated(EnumType.ORDINAL)
     private TransactionType transactionType;
 
-    public int getTransactionAmount() {
+    public double getTransactionAmount() {
         return transactionAmount;
     }
 
-    public void setTransactionAmount(int transactionAmount) {
+    public Transaction setTransactionAmount(double transactionAmount) {
         this.transactionAmount = transactionAmount;
+        return this;
     }
 
-    public TransactionPaymentStatus getTransactionPaymentStatus() {
-        return transactionPaymentStatus;
+    public TransactionPaymentStatus getTransactionStatus() {
+        return transactionStatus;
     }
 
-    public void setTransactionPaymentStatus(TransactionPaymentStatus transactionPaymentStatus) {
-        this.transactionPaymentStatus = transactionPaymentStatus;
+    public Transaction setTransactionStatus(TransactionPaymentStatus transactionStatus) {
+        this.transactionStatus = transactionStatus;
+        return this;
     }
 
     public String getReferenceNumber() {
         return referenceNumber;
     }
 
-    public void setReferenceNumber(String referenceNumber) {
+    public Transaction setReferenceNumber(String referenceNumber) {
         this.referenceNumber = referenceNumber;
+        return this;
     }
 
     public TransactionType getTransactionType() {
         return transactionType;
     }
 
-    public void setTransactionType(TransactionType transactionType) {
+    public Transaction setTransactionType(TransactionType transactionType) {
         this.transactionType = transactionType;
+        return this;
     }
 }
