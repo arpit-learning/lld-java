@@ -12,4 +12,5 @@ public interface ShowSeatService {
     ShowSeat createShowSeat(int showId, int seatId, double price) throws InvalidShowIdException, InvalidSeatIdException;
     ShowSeat save(ShowSeat showSeat);
     List<ShowSeat> getShowSeatsByIds(List<Integer> showSeatIds);
+    List<ShowSeat> getAll();
 }

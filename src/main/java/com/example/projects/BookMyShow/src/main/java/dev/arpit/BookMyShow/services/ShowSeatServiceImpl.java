@@ -43,4 +43,9 @@ public class ShowSeatServiceImpl implements ShowSeatService {
     public List<ShowSeat> getShowSeatsByIds(List<Integer> showSeatIds) {
         return showSeatRepository.findAllById(showSeatIds);
     }
+
+    @Override
+    public List<ShowSeat> getAll() {
+        return showSeatRepository.findAll();
+    }
 }
